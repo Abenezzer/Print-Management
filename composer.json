@@ -1,0 +1,17 @@
+{
+    "name": "abenezer/print-management",
+    "description": "Print managment for bis school",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Abenezer Daniel",
+            "email": "aabenezzer@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            
+        }
+    }
+}
