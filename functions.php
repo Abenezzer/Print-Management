@@ -2,22 +2,34 @@
 
 function base_path($path)
 {
-    return require BASE_PATH . "/{$path}";
+    return BASE_PATH . "/{$path}";
 }
 
-function view($path)
+function view($path, $params = [])
 {
+    extract($params);
     $path = BASE_PATH . "/views/{$path}";
     return require($path);
 }
 
-function partial($path) {
+function partial($path, $params = []) {
+    extract($params);
     $path  =  BASE_PATH . "/views/partials/{$path}";
     return require($path);
 }
 
 function dd($value)
 {
+    echo "<pre>";
     var_dump($value);
+    echo "</pre>";
     die();
+}
+
+function dump($value)
+{
+    echo "<pre>";
+    var_dump($value);
+    echo "</pre>";
+
 }

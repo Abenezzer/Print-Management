@@ -1,4 +1,4 @@
-<?php partial('header.php') ?>
+<?php partial('header.php', ["title" => "login"]) ?>
 
 <body style="height: 100vh;" class="">
 
@@ -11,7 +11,7 @@
 
     <div class="container">
         <div style="height: 60vh;" class="is-fullheight">
-            <form action="" class="">
+            <form method="POST" action="/login">
                 <div style="max-width: 500px;" class="box mx-auto p-5">
                     <div class="field ">
                         <label class="label">Username</label>
