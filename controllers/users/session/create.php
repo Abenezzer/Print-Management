@@ -27,10 +27,6 @@ $config = require base_path('/config.php');
 $db = new Database($config['database']);
 
 
-
-
-
-
 $user = $db->query("SELECT * FROM users where username=:username", ["username" => $username])->find();
 
 
@@ -46,4 +42,12 @@ if ($user['password'] !== $password) {
     redirect('/');
 }
 
-dd("you are logged in");
+// create session and redirect 
+
+$_SESSION['user'] = [
+    "full_name" => $user['full_name'],
+    "role" => $user['role']
+];
+
+redirect('/');
+

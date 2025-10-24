@@ -38,3 +38,10 @@ function redirect($value) {
     header("location: $value");
     die();
 }
+
+function logout() {
+    $_SESSION = [];
+    session_destroy();
+    redirect('/');
+    die();
+}
