@@ -30,12 +30,32 @@ $dns = http_build_query($dbConfig, ':');
 
 $host = $dbConfig['host'];
 $dbname = $dbConfig['dbname'];
-$username = $dbConfig['username'];
-$password = $dbConfig['password'];
+$dbusername = $dbConfig['username'];
+$dbpassword = $dbConfig['password'];
 
 
 
 
- $db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+ $db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $dbusername, $dbpassword);
 
- dd($db);
+$statment = $db->prepare("SELECT * FROM users where username =:username");
+$statment->execute(["username"=> $username]);
+$user = $statment->fetch(PDO::FETCH_ASSOC);
+
+if(empty($user)) {
+    $errros['notfound'] = "User not found plase contact the IT team to create one";
+    $_SESSION['_flashed']['errors'] = $errros;
+    header('location: /');
+    die();
+
+}
+
+if($user['password'] !== $password) {
+    $errros['password'] = "Invalid password (if you forgot your password please contact the IT team)";
+    $_SESSION['_flashed']['errors'] = $errros;
+    header('location: /');
+    die();
+   
+}
+
+dd("you are logged in");
