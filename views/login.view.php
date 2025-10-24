@@ -16,15 +16,16 @@
                     <div class="field ">
                         <label class="label">Username</label>
                         <div class="control">
-                            <input class="input" type="text" placeholder="Text input">
+                            <input class="input <?=isset($errors['password']) ? "is-danger": "" ?> " type="text" name="username" placeholder="Text input">
                         </div>
+                         <p class="help is-danger"><?=$errors['username'] ?? ""?></p>
                     </div>
                     <div class="field">
                         <label class="label">Password</label>
                         <div class="control">
-                            <input class="input is-danger" type="password" placeholder="password" value="password">
+                            <input class="input <?=isset($errors['password']) ? "is-danger": "" ?> " type="password" name="password" placeholder="password">
                         </div>
-                        <p class="help is-danger">This email is invalid</p>
+                        <p class="help is-danger"><?=$errors['password'] ?? ""?></p>
                     </div>
                     <div class="control">
                         <button class="button is-link">Login</button>

@@ -7,46 +7,39 @@ class Router
 
     protected $_routes = [];
 
-    public function get($path, $controller)
-    {
-
+    public function add($path,$controller,$method) {
         $this->_routes[] = [
             "path" => $path,
             "controller" => $controller,
-            "method" => "GET"
+            "method" => $method
         ];
     }
-    public function POST($path, $controller)
+
+    public function get($path, $controller)
     {
 
-        $this->_routes = [
-            "path" => $path,
-            "controller" => $controller,
-            "method" => "POST"
-        ];
+        $this->add($path,$controller, "GET");
+    }
+    public function post($path, $controller)
+    {
+
+        $this->add($path,$controller, "POST");
     }
     public function update($path, $controller)
     {
 
-        $this->_routes = [
-            "path" => $path,
-            "controller" => $controller,
-            "method" => "UPDATE"
-        ];
+       $this->add($path,$controller, "UPDATE");
     }
     public function delete($path, $controller)
     {
 
-        $this->_routes = [
-            "path" => $path,
-            "controller" => $controller,
-            "method" => "DELETE"
-        ];
+        $this->add($path,$controller, "DELETE");
     }
 
     public function route($path, $method) {
         foreach($this->_routes as $route) {
             if($route['path'] === $path && $route['method'] === $method) {
+                
                 return require base_path($route['controller']);
             }
         }

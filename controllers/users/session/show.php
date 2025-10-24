@@ -1,2 +1,4 @@
 <?php 
-view('login.view.php', );
+view('login.view.php',[
+    "errors" => $_SESSION['_flashed']['errors'] ?? []
+] );
