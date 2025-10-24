@@ -21,7 +21,7 @@
                     <div class="field ">
                         <label class="label">Username</label>
                         <div class="control">
-                            <input class="input <?= isset($errors['password']) ? "is-danger" : "" ?> " type="text" name="username" placeholder="Text input">
+                            <input class="input <?= isset($errors['username']) ? "is-danger" : "" ?> " type="text" name="username" placeholder="Text input">
                         </div>
                         <p class="help is-danger"><?= $errors['username'] ?? "" ?></p>
                     </div>

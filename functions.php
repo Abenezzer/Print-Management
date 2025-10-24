@@ -33,3 +33,8 @@ function dump($value)
     echo "</pre>";
 
 }
+
+function redirect($value) {
+    header("location: $value");
+    die();
+}
