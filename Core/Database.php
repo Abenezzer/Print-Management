@@ -18,10 +18,21 @@ class Database {
 
     public function query(string $query, array $params = []) {
         $this->_statment = $this->_db->prepare($query);
-        dump($params);
         $this->_statment->execute($params);
         return $this;
     }
+
+    public function lastInsertedId() {
+        return $this->_db->lastInsertId();
+    }
+
+    public function lastCreatedItem($filed) {
+        $id = $this->lastInsertedId();
+        return $this->query("SELECT * FROM $filed where id  = $id ")->find();
+
+    }
+
+
 
     public function find() {
         return $this->_statment->fetch();

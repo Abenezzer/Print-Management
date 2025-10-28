@@ -1,6 +1,6 @@
 <?php partial('header.php', ["title" => "login"]) ?>
 
-<body style="height: 100vh;" class="">
+<body style="min-height:100vh;" class="">
 
     <header class="hero is-small is-link mb-4">
         <div class="hero-body has-text-centered">
@@ -9,7 +9,7 @@
         </div>
     </header>
 
-    <div class="container">
+    <div style="min-height: 65vh;" class="container">
         <div style="height: 60vh;" class="is-fullheight">
             <?php if (isset($errors['notfound'])): ?>
                 <div style="max-width:500px ;" class="box mx-auto has-background-danger ">

@@ -1,7 +1,8 @@
 <?php
 
+use Core\Container;
 use Core\Validator;
-use Core\Database;
+
 
 $username = $_POST['username'];
 $password = $_POST['password'];
@@ -23,9 +24,7 @@ if (!empty($errros)) {
 
 // $dbConfig = $config['database'] ?? null;
 
-$config = require base_path('/config.php');
-$db = new Database($config['database']);
-
+$db = Container::resolve("database");
 
 $user = $db->query("SELECT * FROM users where username=:username", ["username" => $username])->find();
 
@@ -44,10 +43,8 @@ if ($user['password'] !== $password) {
 
 // create session and redirect 
 
-$_SESSION['user'] = [
+login([
     "full_name" => $user['full_name'],
     "role" => $user['role']
-];
-
-redirect('/');
+]);
 
