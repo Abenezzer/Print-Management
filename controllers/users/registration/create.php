@@ -1,6 +1,7 @@
 <?php
 
 use Core\Container;
+use Core\Session;
 use Core\Validator;
 
 
@@ -29,7 +30,7 @@ if (!Validator::role($role)) {
 }
 
 if (!empty($errors)) {
-    $_SESSION['_flashed']['errors'] = $errors;
+    Session::putFlashed("errors", $errors);
     redirect('/register');
 }
 
@@ -39,7 +40,7 @@ $user = $db->query("select * from users where username=:username", ["username" =
 
 if ($user) {
     $errors['username'] = "Username Already Exits";
-    $_SESSION['_flashed']['errors'] = $errors;
+    Session::putFlashed("errors", $errors);
     redirect('/register');
 }
 

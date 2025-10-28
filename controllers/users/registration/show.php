@@ -1,3 +1,4 @@
 <?php
- $errors  = $_SESSION['_flashed']['errors'] ?? "";
-view('users/register.view.php', ["errors" => $errors]);
+
+use Core\Session;
+view('users/register.view.php',  ["errors" => Session::getFlashed('errors')]);

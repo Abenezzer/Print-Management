@@ -1,5 +1,7 @@
 <?php
 
+use Core\Session;
+
 function base_path($path)
 {
     return BASE_PATH . "/{$path}";
@@ -42,8 +44,8 @@ function redirect($value)
 
 function login($user)
 {
-    $_SESSION['user'] = $user;
-    return redirect('/');
+    Session::put("user", $user);
+    redirect('/');
 }
 
 function logout()
