@@ -51,39 +51,12 @@ class Router
     {
         foreach ($this->_routes as $route) {
             if ($route['path'] === $path && $route['method'] === $method) {
-                $this->authorize($route['middlewares']);
+                Authorize::route($route['middlewares']);
+               
                 return require base_path($route['controller']);
             }
         }
         dd("no such file 404");
-    }
-
-    private function authorize($middlewares)
-    {
-        
-        foreach ($middlewares as $middleware) {
-            $middleware = strtolower($middleware);
-            $user = Session::get('user') ?? redirect('/');
-            $role = strtolower($user['role']);
-            
-            if ($middleware === "teacher") {
-                
-                $role !== 'teacher' ? redirect('/'): "";
-            }
-            if ($middleware === "approver") {
-                $role !== 'approver' ? redirect('/'): "";
-                
-            }
-            if ($middleware === "admin") {
-                $role !== 'admin' ? redirect('/'):"";
-            }
-            if ($middleware === "printer") {
-                $role !== 'printer' ? redirect('/'):"";
-                
-            }
-        }
-       
-        
     }
 
 }
