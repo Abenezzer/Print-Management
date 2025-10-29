@@ -38,8 +38,9 @@ function dump($value)
 
 function redirect($value)
 {
+    echo "redrecting";
     header("location: $value");
-    die();
+    exit;
 }
 
 function login($user)
@@ -53,7 +54,7 @@ function logout()
     $_SESSION = [];
     session_destroy();
     redirect('/');
-    die();
+    exit;
 }
 
 function loadDashboardByRole($role)
@@ -74,4 +75,12 @@ function loadDashboardByRole($role)
         default:
             dd("404");
     }
+}
+
+function displayErrors()
+{
+
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 }

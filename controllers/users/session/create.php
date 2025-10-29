@@ -36,7 +36,7 @@ if (empty($user)) {
     redirect('/');
 }
 
-if ($user['password'] !== $password) {
+if (!password_verify($password,$user['password'])) {
     $errors['password'] = "Invalid password (if you forgot your password please contact the IT team)";
     Session::putFlashed("errors", $errors);
     redirect('/');
