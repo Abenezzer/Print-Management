@@ -23,7 +23,7 @@
                     manage requests
                 </a>
                 <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">
+                    <a  class="navbar-link">
                         User management
                     </a>
                     <div class="navbar-dropdown">
@@ -31,7 +31,7 @@
                             Create new User
                         </a>
                         <hr class="navbar-divider">
-                        <a class="navbar-item">
+                        <a href="/users" class="navbar-item">
                             Manage Users
                         </a>
 

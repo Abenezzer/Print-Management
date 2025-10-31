@@ -12,12 +12,12 @@
     <div style="min-height: 65vh;" class="container">
         <div style="height: 60vh;" class="is-fullheight">
             <?php if (isset($errors['notfound'])): ?>
-                <div style="max-width:500px ;" class="box mx-auto has-background-danger ">
+                <div style="max-width:500px ;" class="box mx-auto has-background-danger">
                     <p class=" has-text-centered text-is-bold has-text-white"><?= $errors["notfound"] ?></p>
                 </div>
             <?php endif; ?>
             <form method="POST" action="/login">
-                <div style="max-width: 500px;" class="box mx-auto p-5">
+                <div style="max-width: 500px;" class="box mx-auto p-5 mt-5">
                     <div class="field ">
                         <label class="label">Username</label>
                         <div class="control">

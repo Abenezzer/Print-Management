@@ -22,6 +22,10 @@ class Database {
         return $this;
     }
 
+    public function totalRecord($query) {
+       return  $this->_db->query($query)->fetchColumn();
+    }
+
     public function lastInsertedId() {
         return $this->_db->lastInsertId();
     }
@@ -31,6 +35,7 @@ class Database {
         return $this->query("SELECT * FROM $filed where id  = $id ")->find();
 
     }
+
 
 
 
