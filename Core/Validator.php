@@ -23,6 +23,6 @@ class Validator
         return $pass1 === $pass2;
     }
     public static function role($role) {
-        return $role === 'Teacher' || $role === 'Approver' || $role === 'Admin';
+        return $role === 'Teacher' || $role === 'Approver' || $role === 'Admin' || $role === 'Printer';
     }
 }

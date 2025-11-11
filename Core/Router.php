@@ -29,7 +29,7 @@ class Router
         $this->add($path, $controller, "POST");
         return $this;
     }
-    public function update($path, $controller)
+    public function patch($path, $controller)
     {
 
         $this->add($path, $controller, "PATCH");

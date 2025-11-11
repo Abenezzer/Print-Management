@@ -38,13 +38,14 @@ function dump($value)
 
 function redirect($value)
 {
-    echo "redrecting";
     header("location: $value");
-    exit;
+    exit();
+
 }
 
 function login($user)
 {
+    
     Session::put("user", $user);
     redirect('/');
 }

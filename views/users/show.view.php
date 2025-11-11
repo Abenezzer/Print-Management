@@ -1,59 +1,71 @@
-<?php partial("header.php", ["title" => "User Management"]) ?>
+<?php partial('header.php', ["title" => "Regester Users"]) ?>
+<?php partial('admin/navbar.php') ?>;
 
 <body>
-    <?php partial("admin/navbar.php") ?>
-    <div style="min-height:75vh; overflow:hidden" class="">
-        <div class="container">
-            <div class="is-flex  is-justify-content-center mt-4 is-align-tiem-center ">
+    <div style="min-height: 80vh;" class="container">
+      <div class="is-flex is-justify-content-center is-align-content-center">
+        <p class="has-text-centered has-text-primary subtitle is-4 mt-2">
+          Register New User
+</p>
+            </div>
+            <div style="max-width: 500px" class="fields mx-auto mt-5 box">
+        <form action="/update-user" method="POST">
 
-                <div class="ml-5">
-                    <div class="">
-                        <form action="/users" method="GET">
-                            <div class="field is-flex is-justify-content-flex-end">
-                                <div class="control">
-                                    <input name="fullName" class="input is-small" type="text" placeholder="Serach by fullname">
-                                </div>
-                                <div class="div">
-                                    <button type="submit" class="button is-primary has-text-white is-small">Search...</button>
-                                </div>
-                            </div>
-                        </form>
-
-                    </div>
-                    <table class="table is-striped is-fullwidth is-hoverable">
-                        <thead>
-                            <th>ID No</th>
-                            <th>Role</th>
-                            <th>Full Name</th>
-                            <th>Actions</th>
-                        </thead>
-                        <tbody>
-                            <?php if(isset($users)):  ?>
-                            <?php foreach ($users as $user): ?>
-                                <tr>
-                                    <th><?= $user['id'] ?></th>
-                                    <td><span class="tag is-success"><?= $user['role'] ?></span></td>
-                                    <td><?= $user['full_name'] ?></td>
-                                    <td class="is-flex is-justify-content-between">
-                                        <a href="/delte" class="button is-warning is-small mr-3">Update</a>
-                                        <a href="/delte" class="button is-danger is-small">Delete</a>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                            <?php endif; ?>
-                        </tbody>
-                    </table>
-
-                   <?php if(isset($page)): ?>
-                       <?php  partial('pagination.php', ["page" => $page, "totalPage" => $totalPage]) ?>
-                    <?php endif ?>
-
-                </div>
+        
+          <!-- fullname -->
+           <input type="hidden" name="__method" value="PATCH">
+           <input type="hidden" name="id" value="<?=$user['id'] ?? '' ?>">
+          <div class="field">
+            <label class="label">Full-Name:</label>
+            <div class="control">
+              <input class="input" type="text" name="fullname" value="<?=$user['full_name'] ?? '' ?>" />
+            </div>
+            <p class="help has-text-danger"> <?= $errors['fullname'] ?? "" ?></p>
+          </div>
+          <!-- username -->
+           <div class="field">
+            <label class="label">Username:</label>
+            <div class="control">
+              <input class="input" type="text" name="username" value="<?=$user['username'] ?? '' ?>"  />
             </div>
 
-        </div>
+            <p class="help has-text-danger"> <?= $errors['username'] ?? "" ?></p>
+          </div>
+          <!-- password -->
+           <div class="field">
+            <label class="label">Password:</label>
+            <div class="control">
+              <input class="input" type="password" name="password" />
+            </div>
+            <p class="help has-text-danger"><?=$errors['password']?? "" ?></p>
+          </div>
+          <!-- ConfPassword -->
+           <div class="field">
+            <label class="label">Comfirm Password:</label>
+            <div class="control">
+              <input class="input" type="password" name="comfPassword" />
+            </div>
+            <p class="help has-text-danger"><?=$errors['comfPassword'] ?? "" ?></p>
+          </div>
+          <!-- role -->
+          <div class="control">
+            <div class="select">
+        
+              <select name="role">
+                <p></p>
+                <option value="">Select User Role</option>
+                <option value="Teacher" >Teacher</option>
+                <option value="Approver">Approver</option>
+                <option value="Printer">Printer</option>
+                <option value="Admin">Admin</option>
+              </select>
+            </div>
+            <p class="help has-text-danger"><?=$errors['role'] ?? "" ?></p>
+          </div>
+          <div class="mt-5 is-fullwidth">
+            <button class="button is-fullwidth is-info has-text-white" type="submit">Update</button>
+          </div>
+        </form>
+      </div>
     </div>
-    <?php partial('footer.php') ?>
 </body>
-
-</html>

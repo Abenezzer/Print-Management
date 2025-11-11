@@ -1,37 +1,18 @@
 <?php
 
-// fetch user
-
 use Core\Container;
+use Core\Session;
 
 $db = Container::resolve('database');
 
+$id = $_GET['id'] ?? null;
 
-$fullName = $_GET['fullName'] ?? null;
-if($fullName) {
+$user = $db->query("select * from users where id = :id", ["id" => $id])->find();
 
-    $fullName = "%$fullName%";
+if($user) {
+    
+view('users/show.view.php', ["user" => $user]);
+exit();
+}
 
-    $users = $db->query("SELECT * FROM users where full_name LIKE :fullName", ["fullName" => $fullName])->findAll();
-    view('users/show.view.php', ["users" => $users]);
-    exit;
-
-} 
-$limit = 8;
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$totalPage = $db->totalRecord("SELECT COUNT(*) FROM users");
-
-$offset = ($page - 1) * $limit;
-
-
-$users = $db->query
-("SELECT * FROM users ORDER BY id LIMIT $limit OFFSET $offset")->findAll();
-
-
-
-
-
-
-
-
-view('users/show.view.php', ["users" => $users, "page" =>$page, "totalPage" => ceil($totalPage / $limit) ]);
+view('users/show.view.php', ["user" => [], "errors" => Session::getFlashed('errors')]);
